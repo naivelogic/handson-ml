@@ -34,7 +34,7 @@ Of course, you obviously need Python. Python 2 is already preinstalled on most s
     $ python --version   # for Python 2
     $ python3 --version  # for Python 3
 
-Any Python 3 version should be fine, preferably ≥3.5. If you don't have Python 3, I recommend installing it (Python ≥2.6 should work, but it is deprecated so Python 3 is preferable). To do so, you have several options: on Windows or MacOSX, you can just download it from [python.org](https://www.python.org/downloads/). On MacOSX, you can alternatively use [MacPorts](https://www.macports.org/) or [Homebrew](https://brew.sh/). If you are using Python 3.6 on MacOSX, you need to run the following command to install the `certifi` package of certificates because Python 3.6 on MacOSX has no certificates to validate SSL connections (see this [StackOverflow question](https://stackoverflow.com/questions/27835619/urllib-and-ssl-certificate-verify-failed-error)):
+Any Python 3 version should be fine, preferably 3.5 or 3.6 (TensorFlow support for Python 3.7 is [coming soon](https://github.com/tensorflow/tensorflow/issues/20517)). If you don't have Python 3, I recommend installing it (Python ≥2.6 should work, but it is deprecated so Python 3 is preferable). To do so, you have several options: on Windows or MacOSX, you can just download it from [python.org](https://www.python.org/downloads/). On MacOSX, you can alternatively use [MacPorts](https://www.macports.org/) or [Homebrew](https://brew.sh/). If you are using Python 3.6 on MacOSX, you need to run the following command to install the `certifi` package of certificates because Python 3.6 on MacOSX has no certificates to validate SSL connections (see this [StackOverflow question](https://stackoverflow.com/questions/27835619/urllib-and-ssl-certificate-verify-failed-error)):
 
     $ /Applications/Python\ 3.6/Install\ Certificates.command
 
@@ -51,7 +51,7 @@ If you choose to use Anaconda, read the next section, or else jump to the [Using
 When using Anaconda, you can optionally create an isolated Python environment dedicated to this project. This is recommended as it makes it possible to have a different environment for each project (e.g. one for this project), with potentially different libraries and library versions:
 
     $ conda create -n mlbook python=3.5 anaconda
-    $ source activate mlbook
+    $ conda activate mlbook
 
 This creates a fresh Python 3.5 environment called `mlbook` (you can change the name if you want to), and it activates it. This environment contains all the scientific libraries that come with Anaconda. This includes all the libraries we will need (NumPy, Matplotlib, Pandas, Jupyter and a few others), except for TensorFlow, so let's install it:
 
@@ -87,6 +87,10 @@ Now you must activate this environment. You will need to run this command every 
 
     $ source ./env/bin/activate
 
+On Windows, the command is slightly different:
+
+    $ .\env\Scripts\activate
+
 Next, use pip to install the required python packages. If you are not using virtualenv, you should add the `--user` option (alternatively you could install the libraries system-wide, but this will probably require administrator rights, e.g. using `sudo pip3` instead of `pip3` on Linux).
 
     $ pip3 install --upgrade -r requirements.txt
@@ -94,21 +98,11 @@ Next, use pip to install the required python packages. If you are not using virt
 Great! You're all set, you just need to start Jupyter now.
 
 ## Starting Jupyter
-If you want to use the Jupyter extensions (optional, they are mainly useful to have nice tables of contents), you first need to install them:
-
-    $ jupyter contrib nbextension install --user
-
-Then you can activate an extension, such as the Table of Contents (2) extension:
-
-    $ jupyter nbextension enable toc2/main
-
 Okay! You can now start Jupyter, simply type:
 
     $ jupyter notebook
 
-This should open up your browser, and you should see Jupyter's tree view, with the contents of the current directory. If your browser does not open automatically, visit [localhost:8888](http://localhost:8888/tree). Click on `index.ipynb` to get started!
-
-Note: you can also visit [http://localhost:8888/nbextensions](http://localhost:8888/nbextensions) to activate and configure Jupyter extensions.
+This should open up your browser, and you should see Jupyter's tree view, with the contents of the current directory. If your browser does not open automatically, visit [127.0.0.1:8888](http://127.0.0.1:8888/tree). Click on `index.ipynb` to get started!
 
 Congrats! You are ready to learn Machine Learning, hands on!
 
